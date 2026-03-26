@@ -1,126 +1,182 @@
 import { motion } from "framer-motion";
 import { useInView } from "@/hooks/useInView";
+import {
+  BadgeCheck,
+  BarChart3,
+  Briefcase,
+  Megaphone,
+  Palette,
+  PenTool,
+  PieChart,
+  Scissors,
+  Search,
+  Target,
+  TrendingUp,
+} from "lucide-react";
 
-const technicalSkills = [
-  { name: "React.js", level: 95 },
-  { name: "JavaScript ES6+", level: 90 },
-  { name: "HTML5 & CSS3", level: 95 },
-  { name: "TailwindCSS", level: 90 },
-  { name: "TypeScript", level: 80 },
-  { name: "Bootstrap", level: 85 },
+const skills = [
+  "Content & Branding",
+  "Growth Marketing",
+  "Social Media Strategy",
+  "Analytics",
+  "Marketing Strategy",
+  "Brand Management",
+  "Creative Campaigns",
 ];
 
-const toolsAndTech = [
-  { name: "RESTful APIs", level: 85 },
-  { name: "Git & GitHub", level: 90 },
-  { name: "Figma", level: 75 },
-  { name: "Responsive Design", level: 95 },
-  { name: "Performance Optimization", level: 80 },
-  { name: "CI/CD", level: 70 },
+const toolGroups = [
+  {
+    title: "Marketing Strategy",
+    tools: [
+      { name: "Google Analytics", label: "Marketing Strategy", icon: BarChart3 },
+      { name: "Google Trends", label: "Marketing Strategy", icon: TrendingUp },
+      { name: "Google Search Console", label: "Marketing Strategy", icon: Search },
+    ],
+  },
+  {
+    title: "Branding & Social Media",
+    tools: [
+      { name: "Adobe Creative Suite", label: "Branding", icon: Palette },
+      { name: "Figma", label: "Design", icon: PenTool },
+      { name: "CapCut", label: "Video", icon: Scissors },
+    ],
+  },
+  {
+    title: "Analytics & Insights",
+    tools: [
+      { name: "Power BI", label: "Analytics", icon: PieChart },
+      { name: "Microsoft 365", label: "Reporting", icon: Briefcase },
+    ],
+  },
+  {
+    title: "Ads & Growth",
+    tools: [
+      { name: "Meta Ads", label: "Paid Media", icon: Megaphone },
+      { name: "Google Ads", label: "Paid Media", icon: Target },
+    ],
+  },
 ];
 
-const additionalSkills = [
-  "WordPress/Shopify",
-  "SEO Optimization",
-  "Agile/Scrum",
-  "Cross-Browser Compatibility",
-  "UI/UX Design",
-  "Cloud Hosting",
+const certifications = [
+  {
+    name: "Digital Marketing Bootcamp",
+    provider: "Growth Academy",
+    date: "2024",
+  },
+  {
+    name: "Advanced Social Media Marketing",
+    provider: "Meta Blueprint",
+    date: "2023",
+  },
+  {
+    name: "Google Project Management Certificate",
+    provider: "Google",
+    date: "2023",
+  },
+  {
+    name: "Google Data Analytics Certificate",
+    provider: "Google",
+    date: "2022",
+  },
+  {
+    name: "Business Analyst Certification",
+    provider: "IIBA",
+    date: "2022",
+  },
 ];
-
-const SkillBar = ({ name, level, delay }: { name: string; level: number; delay: number }) => {
-  const { ref, isInView } = useInView(0.3);
-
-  return (
-    <div ref={ref} className="mb-6">
-      <div className="flex justify-between mb-2">
-        <span className="text-foreground font-medium text-sm">{name}</span>
-        <span className="text-primary font-semibold text-sm">{level}%</span>
-      </div>
-      <div className="h-2 bg-secondary rounded-full overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={isInView ? { width: `${level}%` } : { width: 0 }}
-          transition={{ duration: 1, delay, ease: "easeOut" }}
-          className="h-full bg-primary rounded-full"
-        />
-      </div>
-    </div>
-  );
-};
 
 export const Skills = () => {
-  const { ref, isInView } = useInView(0.1);
+  const { ref, isInView } = useInView(0.2);
 
   return (
-    <section id="skills" className="py-20 md:py-28 bg-secondary/30">
-      <div className="section-container">
+    <section id="skills" className="py-24 md:py-32 bg-secondary/30 relative overflow-hidden">
+      <div className="absolute -top-12 right-10 h-36 w-36 rounded-full bg-primary/10 blur-3xl" />
+      <div className="absolute bottom-10 left-10 h-28 w-28 rounded-full border border-primary/20" />
+
+      <div className="section-container relative">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="grid lg:grid-cols-[1.15fr_0.85fr] gap-12"
         >
-          <h2 className="section-title">
-            My <span className="text-primary">Skills</span>
-          </h2>
-          <p className="section-subtitle max-w-2xl mx-auto">
-            A comprehensive toolkit for building modern, responsive web applications
-          </p>
-        </motion.div>
+          <div className="space-y-8">
+            <div className="glass-card p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <h3 className="text-2xl font-semibold text-foreground font-display">skills.</h3>
+                <span className="h-px w-12 bg-primary/40" />
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="text-xs sm:text-sm px-4 py-2 rounded-full bg-background/80 border border-border shadow-sm text-foreground"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="glass-card p-8"
-          >
-            <h3 className="text-xl font-bold text-foreground mb-8 flex items-center gap-3">
-              <span className="w-3 h-3 bg-primary rounded-full" />
-              Core Technical Skills
-            </h3>
-            {technicalSkills.map((skill, index) => (
-              <SkillBar key={skill.name} {...skill} delay={index * 0.1} />
-            ))}
-          </motion.div>
+            <div className="glass-card p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <h3 className="text-2xl font-semibold text-foreground font-display">tools.</h3>
+                <span className="h-px w-12 bg-primary/40" />
+              </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="glass-card p-8"
-          >
-            <h3 className="text-xl font-bold text-foreground mb-8 flex items-center gap-3">
-              <span className="w-3 h-3 bg-primary rounded-full" />
-              Tools & Technologies
-            </h3>
-            {toolsAndTech.map((skill, index) => (
-              <SkillBar key={skill.name} {...skill} delay={index * 0.1} />
-            ))}
-          </motion.div>
-        </div>
+              <div className="space-y-6">
+                {toolGroups.map((group) => (
+                  <div key={group.title}>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
+                      {group.title}
+                    </p>
+                    <div className="grid sm:grid-cols-2 gap-3">
+                      {group.tools.map((tool) => (
+                        <div
+                          key={tool.name}
+                          className="rounded-xl border border-border bg-background/90 p-4 shadow-sm flex items-start gap-3"
+                        >
+                          <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                            <tool.icon className="h-4 w-4 text-primary" />
+                          </div>
+                          <div>
+                            <p className="text-sm font-semibold text-foreground">{tool.name}</p>
+                            <p className="text-xs text-muted-foreground">{tool.label}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="glass-card p-8"
-        >
-          <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-3">
-            <span className="w-3 h-3 bg-primary rounded-full" />
-            Additional Expertise
-          </h3>
-          <div className="flex flex-wrap gap-3">
-            {additionalSkills.map((skill) => (
-              <span
-                key={skill}
-                className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors cursor-default"
-              >
-                {skill}
-              </span>
-            ))}
+          <div className="glass-card p-8 h-fit">
+            <div className="flex items-center gap-3 mb-6">
+              <h3 className="text-2xl font-semibold text-foreground font-display">
+                certification.
+              </h3>
+              <span className="h-px w-12 bg-primary/40" />
+            </div>
+            <div className="space-y-4">
+              {certifications.map((cert) => (
+                <div
+                  key={cert.name}
+                  className="rounded-xl border border-border bg-background/90 p-4 shadow-sm flex items-start gap-3"
+                >
+                  <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <BadgeCheck className="h-4 w-4 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">{cert.name}</p>
+                    <p className="text-xs text-muted-foreground">{cert.provider}</p>
+                    <p className="text-xs text-muted-foreground">{cert.date}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>

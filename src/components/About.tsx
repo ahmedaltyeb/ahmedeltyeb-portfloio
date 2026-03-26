@@ -13,7 +13,7 @@ export const About = () => {
   const { ref, isInView } = useInView(0.1);
 
   return (
-    <section id="about" className="py-20 md:py-28 bg-secondary/30">
+    <section id="about" className="py-24 md:py-32 bg-secondary/30">
       <div className="section-container">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -24,7 +24,7 @@ export const About = () => {
             className="relative"
           >
             <div className="relative">
-              <div className="w-full max-w-md mx-auto aspect-square rounded-2xl overflow-hidden border-4 border-primary/10">
+              <div className="w-full max-w-md mx-auto aspect-square rounded-2xl overflow-hidden border border-border shadow-xl">
                 <img
                   src={profileImage}
                   alt="Ahmed Eltyeb Khalifa"
@@ -47,7 +47,7 @@ export const About = () => {
                   <div className="w-14 h-14 mx-auto mb-2 rounded-xl bg-primary/10 flex items-center justify-center">
                     <item.icon className="h-6 w-6 text-primary" />
                   </div>
-                  <p className="text-2xl font-bold text-foreground">{item.value}</p>
+                  <p className="text-2xl font-semibold text-foreground">{item.value}</p>
                   <p className="text-xs text-muted-foreground">{item.label}</p>
                 </motion.div>
               ))}
@@ -63,36 +63,32 @@ export const About = () => {
               About <span className="text-primary">Me</span>
             </h2>
             <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-              I'm a passionate Front End Developer based in Dubai, UAE, with over 3 years 
-              of experience building responsive, user-centric web applications. My journey 
-              started in digital marketing, which gave me a unique perspective on user 
-              behavior and conversion optimization.
+              I am a performance-driven Digital Marketer and Frontend Developer based in the UAE. I build modern
+              web applications and run campaigns that turn marketing spend into measurable growth.
             </p>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Today, I specialize in React.js and modern JavaScript, creating seamless 
-              interfaces that not only look great but also drive business results. I 
-              combine technical expertise with an understanding of user psychology to 
-              build products that people love to use.
+              My marketing background gives me an edge in conversion optimization, while my React and TypeScript
+              expertise lets me ship fast, polished experiences that align with campaign goals.
             </p>
             <p className="text-muted-foreground mb-8 leading-relaxed">
-              When I'm not coding, I'm exploring new technologies, contributing to 
-              open-source projects, and sharing knowledge with the developer community.
+              I combine strategy, execution, and engineering to move the metrics that matter: revenue, leads, and
+              customer acquisition efficiency.
             </p>
 
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <span className="w-2 h-2 bg-primary rounded-full" />
                 <span className="text-foreground font-medium">Bachelor of Computer Applications (BCA)</span>
-                <span className="text-muted-foreground text-sm">— Bengaluru City University</span>
+                <span className="text-muted-foreground text-sm">- Bengaluru City University</span>
               </div>
               <div className="flex items-center gap-3">
                 <span className="w-2 h-2 bg-primary rounded-full" />
-                <span className="text-foreground font-medium">React.js & Frontend Certified</span>
+                <span className="text-foreground font-medium">React.js and Frontend Certified</span>
               </div>
               <div className="flex items-center gap-3">
                 <span className="w-2 h-2 bg-primary rounded-full" />
                 <span className="text-foreground font-medium">Top Performer Award</span>
-                <span className="text-muted-foreground text-sm">— Al Arabi Falcons</span>
+                <span className="text-muted-foreground text-sm">- Al Arabi Falcons</span>
               </div>
             </div>
           </motion.div>

@@ -1,0 +1,442 @@
+Prompts for Update Website portfolio:
+
+1- prompt - update and add digital marketing
+You are a senior React, TypeScript, and Tailwind engineer.
+
+You are working on an existing production-ready portfolio project called "Ahmed's Digital Canvas".
+
+Important rule
+
+Do not redesign the project.
+Do not change the current UI style, layout, spacing, colors, or animations.
+This is an extension task, not a rebuild.
+
+Goal
+
+Upgrade the portfolio so it represents two roles in one unified system:
+
+Frontend Developer
+Digital Marketer
+
+The site must still look like the same project, but with marketing work integrated naturally.
+
+Project context
+
+Tech stack:
+React 18
+TypeScript
+Vite
+Tailwind CSS
+shadcn/ui
+Radix UI
+Framer Motion
+React Router
+
+Structure:
+src/components
+src/pages
+src/hooks
+src/lib
+src/assets
+
+Current sections:
+Hero
+Skills
+Projects
+About
+Experience
+Testimonials
+Contact
+
+Task breakdown
+
+1. Update Hero
+
+Edit src/components/Hero.tsx
+
+Update title to:
+Frontend Developer | Digital Marketing Specialist
+
+Add short subtitle explaining:
+I build websites and grow businesses through digital marketing and campaigns
+
+Do not change layout or styling.
+
+2. Update Skills
+
+Edit src/components/Skills.tsx
+
+Split skills into two groups:
+
+Frontend Skills
+HTML
+CSS
+JavaScript
+React
+Next.js
+UI Development
+Performance Optimization
+
+Marketing Skills
+Meta Ads
+Google Ads
+SEO
+Social Media Marketing
+Content Strategy
+Lead Generation
+Conversion Optimization
+Analytics
+
+Keep same UI structure.
+Reuse existing progress bars or cards.
+
+3. Extend Projects system
+
+Edit src/components/Projects.tsx
+
+Refactor project data into a typed structure.
+
+Create type:
+
+type Project = {
+title: string
+description: string
+category: "frontend" | "marketing" | "hybrid"
+role: string
+tools: string[]
+image: string
+link?: string
+}
+
+Add category filter tabs above projects:
+All
+Frontend
+Marketing
+Hybrid
+
+Filter projects dynamically.
+
+Do not break current card design.
+
+4. Add Marketing Campaigns section
+
+Create new file:
+src/components/Marketing.tsx
+
+This section must visually match Projects section.
+
+Create type:
+
+type Campaign = {
+title: string
+platform: string
+objective: string
+industry: string
+role: string
+summary: string
+metrics: {
+impressions?: number
+reach?: number
+ctr?: number
+costPerResult?: number
+leads?: number
+messages?: number
+}
+}
+
+Render campaigns as cards.
+
+Each card shows:
+Campaign name
+Platform
+Objective
+Short summary
+Key metrics
+
+Keep design minimal and consistent.
+
+Then import Marketing section into main page between Projects and Case Studies.
+
+5. Update Case Studies
+
+Edit or create src/components/CaseStudies.tsx
+
+Support two types:
+development
+marketing
+
+Each case study structure:
+
+type CaseStudy = {
+title: string
+type: "development" | "marketing" | "hybrid"
+problem: string
+strategy: string
+execution: string
+result: string
+}
+
+Keep same card or list style.
+
+6. Update Experience
+
+Edit src/components/Experience.tsx
+
+For each role, include both:
+development tasks
+marketing tasks
+
+Example:
+Built frontend interfaces
+Managed ad campaigns
+Optimized conversion funnels
+
+Do not change timeline UI.
+
+7. Update About
+
+Edit src/components/About.tsx
+
+Update text to:
+
+I am a Frontend Developer and Digital Marketer based in UAE. I build modern web applications and help businesses grow through performance marketing, campaigns, and data-driven strategies.
+
+Keep same structure and layout.
+
+8. Update Contact
+
+Edit src/components/Contact.tsx
+
+Update intro text:
+
+Contact me for:
+Frontend development
+Website design
+Digital marketing
+Ad campaigns
+Business growth
+
+No layout changes.
+
+9. Navigation update
+
+If navbar exists:
+
+Add link:
+Marketing or Campaigns
+
+Keep navigation minimal.
+
+10. Data structure
+
+Create new folder:
+src/data
+
+Add:
+projects.ts
+campaigns.ts
+caseStudies.ts
+
+Move static data out of components.
+
+11. Reusability
+
+Create reusable components if needed:
+
+ProjectCard.tsx
+CampaignCard.tsx
+
+Only if current code is not reusable.
+
+12. Integration order
+
+Final page order:
+
+Hero
+Skills
+Projects
+Marketing Campaigns
+Case Studies
+About
+Experience
+Testimonials
+Contact
+
+13. Performance rules
+
+Do not increase bundle size significantly.
+Lazy load Marketing section if needed.
+Keep animations same as existing.
+
+14. Output requirement
+
+After finishing, return:
+
+Updated file list
+New components created
+Updated data models
+Where to insert real campaign data
+Example dummy data for campaigns and marketing projects
+
+15. Example campaign data
+
+Provide 2 sample campaigns like:
+
+{
+title: "ISMET Steak Campaign",
+platform: "Meta Ads",
+objective: "Messages",
+industry: "Restaurant",
+role: "Campaign Setup and Optimization",
+summary: "Video ads for smoked meat targeting Ajman audience",
+metrics: {
+impressions: 16971,
+ctr: 4.01,
+messages: 54,
+costPerResult: 1.99
+}
+}
+
+Final expectation
+
+The website must feel like one strong personal brand:
+A developer who builds and grows digital products.
+
+No visual conflict.
+No redesign.
+Clean extension only.
+
+
+#  (2- prompt - :update Hero Scetion )
+
+
+Use this prompt with your AI agent:
+
+Update only the Hero section of my existing portfolio website.
+
+Goal
+
+Add a smooth text-switching animation in the hero content area so the role and description rotate automatically between two identities without changing the current design.
+
+Current text in hero:
+"Front End Web Developer"
+"Building responsive, user-centric web interfaces with seamless UI/UX. Specializing in React.js, JavaScript, and modern CSS frameworks."
+
+New behavior required
+
+The hero must alternate between two content states:
+
+State 1
+Title:
+Front End Web Developer
+
+Description:
+Building responsive, user-centric web interfaces with seamless UI/UX. Specializing in React.js, JavaScript, and modern CSS frameworks.
+
+State 2
+Title:
+Digital Marketer
+
+Description:
+Driving business growth through performance marketing, paid campaigns, lead generation, content strategy, and data-driven optimization.
+
+Animation requirements
+
+Do not remove the current hero layout.
+Do not redesign anything.
+Keep the same font sizes, colors, spacing, and alignment.
+Only animate the role text and description text.
+
+The text must switch automatically every few seconds.
+Use smooth fade and slide animation.
+No harsh jump.
+No typing effect.
+No flashy animation.
+The transition must feel clean, modern, and professional.
+
+Behavior details
+
+Show the first text by default.
+After around 3 to 4 seconds, transition smoothly to the second text.
+Then loop back to the first text.
+Keep the animation infinite.
+Both title and description must animate together as one content block.
+
+Technical requirements
+
+This project uses:
+React 18
+TypeScript
+Vite
+Tailwind CSS
+Framer Motion
+
+Use Framer Motion for the animation.
+Do not add a new library.
+
+Implementation guidance
+
+Edit the existing Hero component only.
+Create a small array of hero roles and descriptions.
+Use React state plus setInterval or a similar clean approach to rotate content.
+Use AnimatePresence and motion.div from Framer Motion for smooth enter and exit animation.
+Make sure the animation does not cause layout shift or break responsiveness.
+Keep the height stable so the hero content does not jump when text changes.
+
+Suggested content structure
+
+const heroRoles = [
+{
+title: "Front End Web Developer",
+description: "Building responsive, user-centric web interfaces with seamless UI/UX. Specializing in React.js, JavaScript, and modern CSS frameworks."
+},
+{
+title: "Digital Marketer",
+description: "Driving business growth through performance marketing, paid campaigns, lead generation, content strategy, and data-driven optimization."
+}
+];
+
+Suggested animation style
+
+Enter:
+opacity 0
+y 12
+
+Animate:
+opacity 1
+y 0
+
+Exit:
+opacity 0
+y -12
+
+Use a smooth duration around 0.4 to 0.7 seconds.
+Rotate content every 3500 to 4000 milliseconds.
+
+Important constraints
+
+Do not change buttons.
+Do not change profile image.
+Do not change social icons.
+Do not change hero structure.
+Do not change background.
+Do not change navbar.
+
+Output required from the agent
+
+Return:
+
+1. The updated Hero component code
+2. A short note explaining where the rotating text logic was added
+3. Any small styling adjustment used to prevent layout jump
+
+If the current Hero component already uses motion, integrate the new logic into the existing structure instead of rewriting the whole component.
+
+Here is an optional better marketing text if you want the second state stronger:
+
+Title:
+Digital Marketer
+
+Description:
+Helping brands grow with paid ads, campaign strategy, audience targeting, lead generation, and performance-focused digital marketing.
+

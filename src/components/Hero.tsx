@@ -1,13 +1,33 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import profileImage from "@/assets/ahmed-profile.png";
+import { useEffect, useState } from "react";
+
+const heroRoles = ["Frontend Developer", "Digital Marketer"];
+
+const heroMetrics = [
+  { label: "Sales Lift", value: "+35%" },
+  { label: "CTR", value: "3.85%" },
+  { label: "Cost per Result", value: "1.99 AED" },
+];
 
 export const Hero = () => {
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentRoleIndex((prev) => (prev + 1) % heroRoles.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center pt-24 relative overflow-hidden"
       style={{ background: "var(--hero-gradient)" }}
     >
       <div className="section-container">
@@ -18,29 +38,48 @@ export const Hero = () => {
             transition={{ duration: 0.6 }}
             className="order-2 lg:order-1"
           >
-            <p className="text-primary font-medium mb-4 text-sm md:text-base tracking-wide">
-              Hello, I'm
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-primary mb-4">
+              Ahmed Eltyeb Khalifa
             </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 leading-tight">
-              Ahmed Eltyeb
-              <br />
-              <span className="text-primary">Khalifa</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground mb-4 leading-tight font-display">
+              Digital Marketer & Frontend Developer
             </h1>
-            <h2 className="text-xl md:text-2xl text-muted-foreground mb-6 font-medium">
-              Front End Web Developer
-            </h2>
-            <p className="text-muted-foreground text-base md:text-lg mb-8 max-w-xl leading-relaxed">
-              Building responsive, user-centric web interfaces with seamless UI/UX.
-              Specializing in React.js, JavaScript, and modern CSS frameworks.
+            <p className="text-muted-foreground text-base md:text-lg mb-6 max-w-xl leading-relaxed">
+              I drive measurable growth through performance marketing and build high-converting web experiences.
             </p>
 
-            <div className="flex flex-wrap gap-4 mb-8">
+            <div className="inline-flex items-center gap-3 rounded-full border border-border bg-background/80 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-8">
+              <span>Switching Between</span>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={currentRoleIndex}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.4 }}
+                  className="text-foreground min-w-[160px] text-left"
+                >
+                  {heroRoles[currentRoleIndex]}
+                </motion.span>
+              </AnimatePresence>
+            </div>
+
+            <div className="flex flex-wrap gap-4 mb-10">
               <Button size="lg" className="hover-lift" asChild>
-                <a href="#projects">View Projects</a>
+                <Link to="/campaigns">View Campaign Results</Link>
               </Button>
               <Button size="lg" variant="outline" className="hover-lift" asChild>
-                <a href="#contact">Contact Me</a>
+                <Link to="/projects">View Projects</Link>
               </Button>
+            </div>
+
+            <div className="grid sm:grid-cols-3 gap-4 mb-10">
+              {heroMetrics.map((metric) => (
+                <div key={metric.label} className="rounded-xl border border-border bg-background/70 px-4 py-3">
+                  <p className="text-xs text-muted-foreground">{metric.label}</p>
+                  <p className="text-lg font-semibold text-foreground">{metric.value}</p>
+                </div>
+              ))}
             </div>
 
             <div className="flex items-center gap-4">
@@ -73,22 +112,24 @@ export const Hero = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="order-1 lg:order-2 flex justify-center"
           >
             <div className="relative">
-              <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
+              <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-3xl overflow-hidden border border-border shadow-2xl">
                 <img
                   src={profileImage}
                   alt="Ahmed Eltyeb Khalifa"
                   className="w-full h-full object-cover object-top"
                 />
               </div>
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary rounded-full flex items-center justify-center animate-float">
-                <span className="text-primary-foreground font-bold text-sm text-center leading-tight">
-                  3+ Years<br />Exp.
+              <div className="absolute -bottom-4 -right-4 w-28 h-28 bg-primary rounded-2xl flex items-center justify-center shadow-lg">
+                <span className="text-primary-foreground font-semibold text-sm text-center leading-tight">
+                  3+ Years
+                  <br />
+                  Experience
                 </span>
               </div>
             </div>
@@ -96,7 +137,7 @@ export const Hero = () => {
         </div>
 
         <motion.a
-          href="#skills"
+          href="#projects"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}

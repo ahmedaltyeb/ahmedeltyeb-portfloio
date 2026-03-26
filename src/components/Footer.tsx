@@ -1,4 +1,14 @@
 import { Heart } from "lucide-react";
+import { Link } from "react-router-dom";
+
+const footerLinks = [
+  { label: "Home", href: "/" },
+  { label: "Projects", href: "/projects" },
+  { label: "Campaigns", href: "/campaigns" },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "Social Media", href: "/social-media" },
+  { label: "Contact", href: "/contact" },
+];
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -7,27 +17,27 @@ export const Footer = () => {
     <footer className="py-8 border-t border-border">
       <div className="section-container">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <a
-            href="#home"
-            className="text-xl font-bold text-foreground hover:text-primary transition-colors"
+          <Link
+            to="/"
+            className="text-xl font-semibold font-display text-foreground hover:text-primary transition-colors"
           >
             Ahmed<span className="text-primary"> Eltyeb.</span>
-          </a>
+          </Link>
 
           <nav className="flex flex-wrap justify-center gap-6">
-            {["Home", "Skills", "Projects", "About", "Contact"].map((link) => (
-              <a
-                key={link}
-                href={`#${link.toLowerCase()}`}
+            {footerLinks.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
                 className="text-muted-foreground hover:text-foreground text-sm transition-colors"
               >
-                {link}
-              </a>
+                {link.label}
+              </Link>
             ))}
           </nav>
 
           <p className="text-muted-foreground text-sm flex items-center gap-1">
-            © {currentYear} Ahmed Eltyeb. Made with{" "}
+            (c) {currentYear} Ahmed Eltyeb. Made with{" "}
             <Heart className="h-4 w-4 text-primary fill-primary" />
           </p>
         </div>

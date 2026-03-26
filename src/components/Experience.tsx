@@ -1,43 +1,41 @@
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Briefcase } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
 
-const experiences = [
+type ExperienceItem = {
+  company: string;
+  title: string;
+  duration: string;
+  summary: string[];
+  results: string[];
+  logoText: string;
+  accentClass: string;
+};
+
+const experiences: ExperienceItem[] = [
   {
-    title: "Software Developer",
-    company: "Al Arabi Falcons",
-    location: "Dubai, UAE",
-    period: "2023 - Present",
-    description: [
-      "Developed and maintained React-based web applications with TailwindCSS",
-      "Integrated RESTful APIs and managed SQLite databases",
-      "Implemented automation scripts to improve workflow efficiency",
-      "Collaborated with cross-functional teams using Agile methodologies",
+    company: "ISMET CHEF Steakhouse",
+    title: "Digital Marketing Specialist",
+    duration: "Jan 2026 - Present",
+    summary: [
+      "Managed Meta Ads campaigns focused on WhatsApp conversions",
+      "Optimized targeting within Ajman to reduce wasted spend",
+      "Tested multiple creatives including food cinematic videos",
     ],
+    results: ["+54 Leads in 7 days", "CTR: 3.85%", "Cost per Result: 8.5 AED"],
+    logoText: "IC",
+    accentClass: "bg-primary/10 text-primary",
   },
   {
-    title: "Frontend Developer & Web Engineer",
-    company: "Loof Boutique",
-    location: "Dubai, UAE",
-    period: "2022 - 2023",
-    description: [
-      "Built responsive e-commerce interfaces with React and modern CSS",
-      "Created reusable UI component libraries for consistent design",
-      "Optimized website performance achieving 40% faster load times",
-      "Implemented SEO strategies resulting in improved search rankings",
+    company: "Almoheeb Real Estate",
+    title: "Marketing and Lead Generation",
+    duration: "2025",
+    summary: [
+      "Built lead generation campaigns for property rentals and sales",
+      "Created landing pages and optimized WhatsApp funnel",
     ],
-  },
-  {
-    title: "Junior Web Developer",
-    company: "Gold Signature for Kandora",
-    location: "Dubai, UAE",
-    period: "2021 - 2022",
-    description: [
-      "Assisted in frontend development and UI improvements",
-      "Automated repetitive tasks to enhance team productivity",
-      "Maintained and updated WordPress websites",
-      "Collaborated with designers to implement pixel-perfect designs",
-    ],
+    results: ["+120 Leads Generated", "Reduced CPL by 40%", "Improved conversion rate"],
+    logoText: "AR",
+    accentClass: "bg-secondary text-foreground",
   },
 ];
 
@@ -45,72 +43,86 @@ export const Experience = () => {
   const { ref, isInView } = useInView(0.1);
 
   return (
-    <section id="experience" className="py-20 md:py-28">
+    <section id="experience" className="py-24 md:py-32 bg-secondary/20">
       <div className="section-container">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary mb-3">
+            Experience
+          </p>
           <h2 className="section-title">
-            Work <span className="text-primary">Experience</span>
+            Performance <span className="text-primary">Timeline</span>
           </h2>
-          <p className="section-subtitle max-w-2xl mx-auto">
-            My professional journey in frontend development
+          <p className="section-subtitle max-w-3xl mx-auto">
+            Results-focused roles delivered through performance marketing and conversion-led execution.
           </p>
         </motion.div>
 
         <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-1/2" />
+          <div className="absolute left-6 top-0 bottom-0 w-px bg-border" />
 
-          <div className="space-y-12">
+          <div className="space-y-10">
             {experiences.map((exp, index) => (
               <motion.div
                 key={exp.company}
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className={`relative flex flex-col md:flex-row gap-8 ${
-                  index % 2 === 0 ? "md:flex-row-reverse" : ""
-                }`}
+                transition={{ duration: 0.6, delay: 0.1 * index }}
+                className="relative pl-16"
               >
-                {/* Timeline dot */}
-                <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-primary rounded-full md:-translate-x-1/2 -translate-x-1.5 mt-2 z-10 ring-4 ring-background" />
-
-                {/* Content */}
-                <div className={`md:w-1/2 pl-8 md:pl-0 ${index % 2 === 0 ? "md:pr-12" : "md:pl-12"}`}>
-                  <div className="glass-card p-6 hover-lift">
-                    <div className="flex items-center gap-2 text-primary text-sm font-medium mb-2">
-                      <Calendar className="h-4 w-4" />
-                      {exp.period}
-                    </div>
-                    <h3 className="text-xl font-bold text-foreground mb-1">{exp.title}</h3>
-                    <div className="flex items-center gap-4 text-muted-foreground text-sm mb-4">
-                      <span className="flex items-center gap-1">
-                        <Briefcase className="h-3 w-3" />
-                        {exp.company}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <MapPin className="h-3 w-3" />
-                        {exp.location}
-                      </span>
-                    </div>
-                    <ul className="space-y-2">
-                      {exp.description.map((item, i) => (
-                        <li key={i} className="text-muted-foreground text-sm flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                <div
+                  className={`absolute left-0 top-2 h-12 w-12 rounded-full flex items-center justify-center border border-border shadow-sm ${exp.accentClass}`}
+                >
+                  <span className="text-sm font-semibold">{exp.logoText}</span>
                 </div>
 
-                {/* Spacer for alternating layout */}
-                <div className="hidden md:block md:w-1/2" />
+                <div className="glass-card p-6 md:p-8 hover-lift">
+                  <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                    <div>
+                      <h3 className="text-xl font-semibold text-foreground font-display">
+                        {exp.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">{exp.company}</p>
+                    </div>
+                    <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                      {exp.duration}
+                    </span>
+                  </div>
+
+                  <div className="grid md:grid-cols-[1.1fr_0.9fr] gap-6 items-start">
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                        Impact
+                      </p>
+                      <ul className="space-y-2">
+                        {exp.summary.map((item) => (
+                          <li key={item} className="text-sm text-muted-foreground flex items-start gap-2">
+                            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary/70 shrink-0" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="rounded-2xl border border-border bg-background/90 p-4">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+                        Results
+                      </p>
+                      <div className="space-y-3">
+                        {exp.results.map((result) => (
+                          <div key={result} className="text-base font-semibold text-primary">
+                            {result}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
