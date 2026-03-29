@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/ahmed-s-digital-canvas/", // تأكد من وجود الفاصلة (,) هنا في النهاية
+  base: "/ahmedeltyeb-portfloio/", // تأكد من وجود الفاصلة (,) هنا في النهاية
   server: {
     host: "::",
     port: 8080,
